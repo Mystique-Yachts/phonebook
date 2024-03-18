@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>Mystique Yachts PhoneBook</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./config.js" type="module"></script>
+    
+  </head>
+  <body>
+    
+
+    <!-- Logic for loading login/main screen parts 
+      -->
+    <script type="module">
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
+      
+      onAuthStateChanged(auth, (user) => {      
+      if (user)
+      {
+      document.getElementById('loginscreen').style.display = 'none';
+      document.getElementById('login').style.display = 'none';
+      // ** Load app.js
+      const script = document.createElement('script');
+      script.src = './app.js';
+      script.type = 'module';
+      document.body.appendChild(script);
+      // ** Set main screen visible
+      document.getElementById('mainscreen').style.display = 'table';
+      }else
+      {
+      document.getElementById('loginscreen').style.display = 'table';
+      document.getElementById('mainscreen').style.display = 'none';
+      }
+      });
+    </script>
+
+    
+    <!-- Define the login screen 
+      -->
+    <div class="container center" id="loginscreen" style="display: none;">
+      
+      <h3 id="title">MY PHONE BOOK</h3>
+      <button type="submit" id="login" class="login blue lighten-3 waves-effect waves-light btn">Login with Google</button>
+      
+      <script type="module">
+	import { login } from "./config.js";
+	document.getElementById("login").addEventListener("click", login);
+      </script>
+    </div>
+
+    
+    <!-- Define the main screen
+      --> 
+    <div class="container center" id="mainscreen" style="display: none;">
+
+      <h3 id="title">MY PHONE BOOK</h3>
+      
+      <script type="module">
+	import { logout } from "./config.js";
+	document.getElementById("logout").addEventListener("click", logout);
+      </script>
+      <button type="submit" id="logout" class="logout blue lighten-3 waves-effect waves-light btn">Logout</button>
+      
+      <p class="error-paragraph">	
+      </p>        
+
+      <!-- Fill in -->
+      <form class="my-form">
+	<div class="input-field my-input">
+          <input id="first_name" type="text" class="validate" required="">
+          <label for="first_name">First Name</label>
+	</div>
+	<div class="input-field my-input">
+          <input id="last_name" type="text" class="validate" required="">
+          <label for="last_name">Last Name</label>
+	</div>
+	<div class="input-field my-input">
+          <input id="company" type="text" class="validate" required="">
+          <label for="company">Company</label>
+	</div>
+	<div class="input-field my-input">
+          <input id="role" type="text" class="validate" required="">
+          <label for="role">Role</label>
+	</div>
+	<div class="input-field my-input">
+	  <input id="email" type="text" class="validate" required="">
+          <label for="email">Email</label>
+	</div>
+	<div class="input-field my-input">
+	  <input id="phone_number" type="tel" pattern="+?[1-9][0-9]{7,14}" required="">
+          <label for="phone_number">Phone Number</label>
+	</div>
+	<a class="my-submit blue lighten-3 waves-effect waves-light btn">Add User</a>
+      </form>
+      
+      <!-- Search -->
+      <input type="text" name="search" id="searchContact" placeholder="Search Here..."required></br></br>
+      
+      <!-- Print phonebook -->
+      <table class="stripped", id="contacts">
+	<thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+	    <th>Company</th>
+	    <th>Role</th>
+	    <th>Email</th>
+            <th>Phone Number</th>
+          </tr>
+	</thead>
+	<tbody class="table-body">
+	  <tr id="contInfo" >
+	  </tr>
+	</tbody>
+      </table>
+      
+    </div>
+
+    
+  </body>
+</html>

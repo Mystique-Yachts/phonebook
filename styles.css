@@ -1,0 +1,63 @@
+.my-input{
+    width: 100%;
+    margin: 1em auto;
+}
+
+.my-form{
+    width: 50%;
+    margin: 1em auto;
+}
+
+#title{
+    color: #0099CC;
+}
+
+.error-paragraph{
+    color: #0099CC;
+}
+
+.hide{
+    display: none;
+}
+
+#searchBy {
+    top:38px;
+    right:125px;
+    padding: 0;
+    margin: 0;
+    border: 3px solid red;
+    position: absolute;
+    background: #0099CC;
+}
+
+#searchByy {
+    top:38px;
+    right:140px;
+    padding: 0;
+    margin: 0;
+    border: 3px solid red;
+    position: absolute;
+    background: #080C11;
+}
+
+input[type="radio"]{
+    display: none;
+}
+input[type="radio"] + label::before {
+    content: '\2714';
+    color: transparent;
+    border: 0.1em solid #000;
+    border-radius:20px;
+    width: 2px;
+    height:0.2px;
+    padding: 0em 0em;
+    margin: 0px;
+    font-size: 12px;
+    padding-left:2px;
+    transition: 0.5s;
+}
+
+input[type="radio"]:checked + label::before{
+    background-color: #080C11;
+}
+
