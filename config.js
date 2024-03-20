@@ -26,17 +26,21 @@ export function login() {
 	.then((result) => {
 	    // This gives you a Google Access Token
 	    const user = result.user;
-
-	    // Turn off the splash screen
-	    document.getElementById('loginscreen').style.display = 'none';
+	    const email = user.email;
 	    
-	    // Turn on the main screen
-	    document.getElementById('mainscreen').style.display = 'table';
-	    // Load app.js
-	    const script = document.createElement('script');
-	    script.src = './app.js';
-	    script.type = 'module';
-	    document.body.appendChild(script);
+	    if (email == 'cristiano@mystiqueyachts.com' || email == 'harry@mystiqueyachts.com' || email == 'venia@mystiqueyachts.com' || email == 'lawrence.withy@mystiqueyachts.com')
+	    {	    
+		// Turn off the splash screen
+		document.getElementById('loginscreen').style.display = 'none';
+		
+		// Turn on the main screen
+		document.getElementById('mainscreen').style.display = 'table';
+		// Load app.js
+		const script = document.createElement('script');
+		script.src = './app.js';
+		script.type = 'module';
+		document.body.appendChild(script);
+	    }
 	    
 	}).catch((error) => {
 	    // Handle Errors here.

@@ -112,9 +112,11 @@ onSnapshot(query(collection(db, "phonebook"), orderBy('firstname')), (snapshot) 
 table.addEventListener('click', (e)=>{
     if(e.target.classList.contains('material-icons')){
 	let trId = e.target.parentElement.parentElement.parentElement.id
-	deleteDoc(doc(db, "phonebook", trId))
-            .then(()=> console.log(`Document Succesfully Deleted`))
-            .catch(e=> console.log(e, 'something happened')); 
+	if (confirm("Are you sure you want to delete this contact?") == true){
+	    deleteDoc(doc(db, "phonebook", trId))
+		.then(()=> console.log(`Document Succesfully Deleted`))
+		.catch(e=> console.log(e, 'something happened'));
+	}
     }
 })
 

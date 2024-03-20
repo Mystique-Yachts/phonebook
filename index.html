@@ -21,8 +21,15 @@
     <script type="module">
       import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
       
-      onAuthStateChanged(auth, (user) => {      
+      onAuthStateChanged(auth, (user) => {
+      
+      document.getElementById('loginscreen').style.display = 'table';
+      document.getElementById('mainscreen').style.display = 'none';
+      
       if (user)
+      {
+      const email = user.email;
+      if (email == 'cristiano@mystiqueyachts.com' || email == 'harry@mystiqueyachts.com' || email == 'venia@mystiqueyachts.com' || email == 'lawrence.withy@mystiqueyachts.com')
       {
       document.getElementById('loginscreen').style.display = 'none';
       document.getElementById('login').style.display = 'none';
@@ -33,10 +40,7 @@
       document.body.appendChild(script);
       // ** Set main screen visible
       document.getElementById('mainscreen').style.display = 'table';
-      }else
-      {
-      document.getElementById('loginscreen').style.display = 'table';
-      document.getElementById('mainscreen').style.display = 'none';
+      }
       }
       });
     </script>
